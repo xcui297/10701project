@@ -1,0 +1,125 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+% \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading nips_2017
+%
+% to avoid loading the natbib package, add option nonatbib:
+% \usepackage[nonatbib]{nips_2017}
+
+\usepackage{nips_2017}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{nips_2017}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+\title{Testing for Differences in Gaussian Graphical Models}
+
+% The \author macro works with any number of authors. There are two
+% commands used to separate the names and addresses of multiple
+% authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to
+% break the lines. Using \AND forces a line break at that point. So,
+% if LaTeX puts 3 of 4 authors names on the first line, and the last
+% on the second line, try using \AND instead of \And before the third
+% author name.
+
+\author{
+  David S.~Hippocampus\thanks{Use footnote for providing further
+    information about author (webpage, alternative
+    address)---\emph{not} for acknowledging funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  %% examples of more authors
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \AND
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+}
+
+\begin{document}
+% \nipsfinalcopy is no longer used
+
+\maketitle
+
+\section{Introduction}
+
+\subsection{Functional connectivity of the brain}
+Activities of brain regions are not independent. There exists physical contact between neurons that causes interactions between regions. Not only regions that are close to each other can have correlations, distant brain regions can also interact, which is known as functional connectivity. The idea can be applied to studying psychiatric diseases: are there differences between the brain connectome of a normal person and that of an affected person?  
+
+\subsection{Differences in Gaussian graphical models}
+The connectome is often modeled with Gaussian graphical models. Then differentiating between two connectomes is a task of finding differences between two Gaussian graphical models. The problem here is that, despite the existence of ``functional connectivity", most interactions in the brain are among regions that are close, and therefore any two connectomes, even though they come from a normal person and an affected person, can never vary too much. Thus the "difference" must be a sparse vector. On the other hand, we are doomed to have (1) number of features ($p$) exceeding number of samples ($n$); (2) number of samples from one class ($n_1$, normal people) exceeding number of samples from the other class ($n_2$, affected people). Belilovsky et al. addressed these issues with ``debiased Lasso'' and ``diased fused Lasso'', which we are going to reproduce as the first step in this project.
+
+\section{Proposed step 1: reproducing Belilovsky et al.}
+
+\subsection{Data}
+Autism Dataset ???
+HAI MEI YOU KAN\\
+Or as in 4.1: synthetic data?
+\subsection{Parameter difference estimators}
+Report power, false positive rate, coverage, interval length.
+\subsubsection{Debiased Lasso}
+(Algorithm 1 in Belilovsky et al.) $N \times P$ data matrices HAI MEI KAN from the Autism Dataset. During the project we need to figure out how to solve this debiased lasso: whether there exists subroutines to do this or we need to follow the derivation provided in this paper. $M$ is computed as in Javanmard and Montanari (ref 16 in Belilovsky et al. ZHE GE YE MEI KAN) It seems that we'll do QP with the Mosek QP solver package.
+Refer to Belilovsky et al. for complete pseudocode.
+\subsubsection{Debiased Fused Lasso}
+We also need to figure out how to solve debiased fused Lasso. Again we need QP to solve $M$.
+\subsubsection{Projected Ridge Regreesion}
+Use the hdi package for $\beta_1$ and $\beta_2$. 
+
+
+\section{Proposed step 2: compare with XXX}
+
+\begin{quote}
+  Hasselmo, et al.\ (1995) investigated\dots
+\end{quote}
+
+
+
+\section*{References}
+
+\medskip
+
+\small
+
+[1] Alexander, J.A.\ \& Mozer, M.C.\ (1995) Template-based algorithms
+for connectionist rule extraction. In G.\ Tesauro, D.S.\ Touretzky and
+T.K.\ Leen (eds.), {\it Advances in Neural Information Processing
+  Systems 7}, pp.\ 609--616. Cambridge, MA: MIT Press.
+
+[2] Bower, J.M.\ \& Beeman, D.\ (1995) {\it The Book of GENESIS:
+  Exploring Realistic Neural Models with the GEneral NEural SImulation
+  System.}  New York: TELOS/Springer--Verlag.
+
+[3] Hasselmo, M.E., Schnell, E.\ \& Barkai, E.\ (1995) Dynamics of
+learning and recall at excitatory recurrent synapses and cholinergic
+modulation in rat hippocampal region CA3. {\it Journal of
+  Neuroscience} {\bf 15}(7):5249-5262.
+
+\end{document}
